@@ -12,3 +12,10 @@ dict_keys = {
     10: 'A♯, B♭',
     11: 'B'
 }
+
+dict_gender = {
+    'male': ['him', 'he'],
+    'female': ['she', 'her'],
+    'group': ['band', 'group'],
+    'non-binary': ['they', 'them']
+}
