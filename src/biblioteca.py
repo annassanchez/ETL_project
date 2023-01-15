@@ -14,8 +14,8 @@ dict_keys = {
 }
 
 dict_gender = {
-    'male': ['him', 'he'],
-    'female': ['she', 'her'],
     'group': ['band', 'group'],
-    'non-binary': ['they', 'them']
+    'female': ['she', 'her'],
+    'non-binary': ['they', 'them'],
+    'male': ['him', 'he'],
 }
