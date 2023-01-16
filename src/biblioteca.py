@@ -13,6 +13,11 @@ dict_keys = {
     11: 'B'
 }
 
+dict_scale = {
+    0: 'Major',
+    1: 'Minor',
+}
+
 dict_gender = {
     'male': [' his '],
     #'group': ['duo', 'septet', 'trio', 'collective', 'quintet', 'quartet', 'septet', 'its', ' group ', ' band ', '-group', ' members ', ' brothers ', ' duo ', ' trio ', ' collective ', ' group,', ' quartet ', ' superduo ', ' band,', ' quintet '],
