@@ -21,12 +21,12 @@ USE `mydb` ;
 -- Table `mydb`.`playlist`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`playlist` (
-  `id` VARCHAR(45) NOT NULL,
+  `id` VARCHAR(60) NOT NULL,
   `title` VARCHAR(5000) NOT NULL,
   `rank` INT NOT NULL,
   `date` DATE NOT NULL,
   `artist` VARCHAR(1000) NOT NULL,
-  `url` VARCHAR(45) NOT NULL,
+  `url` VARCHAR(60) NOT NULL,
   `region` VARCHAR(45) NOT NULL,
   `chart` VARCHAR(15) NOT NULL,
   `trend` VARCHAR(45) NOT NULL,
@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`lastfm` (
   `track_genre_2` VARCHAR(25) NULL,
   `track_genre_3` VARCHAR(25) NULL,
   `track_genre_4` VARCHAR(25) NULL,
-  `url` VARCHAR(45) NOT NULL,
+  `url` VARCHAR(60) NOT NULL,
   PRIMARY KEY (`idlastfm`),
   INDEX `fk_lastfm_playlist1_idx` (`url` ASC) VISIBLE,
   CONSTRAINT `fk_lastfm_playlist1`
@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`spotify` (
   `idspotify` INT NOT NULL,
   `artist` VARCHAR(1000) NULL,
   `track` VARCHAR(5000) NULL,
-  `uri` VARCHAR(45) NULL,
+  `uri` VARCHAR(60) NULL,
   `dancebility` DOUBLE NULL,
   `energy` DOUBLE NULL,
   `key` INT NULL,
@@ -90,7 +90,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`spotify` (
   `track_href` VARCHAR(45) NULL,
   `time_seg` DOUBLE NULL,
   `time_min` INT NULL,
-  `url` VARCHAR(45) NOT NULL,
+  `url` VARCHAR(60) NOT NULL,
   PRIMARY KEY (`idspotify`),
   INDEX `fk_spotify_playlist_idx` (`url` ASC) VISIBLE,
   CONSTRAINT `fk_spotify_playlist`
