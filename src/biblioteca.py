@@ -15,9 +15,9 @@ dict_keys = {
 
 dict_gender = {
     'male': [' his '],
-    'group': [' band ',  ' duo ', ' its ', ' members ', ' septet ', 'band,', ' trio '],
-    'female': [' she ', ' her ', 'actress '],
+    'group': [' band ',  ' duo ', ' members ', ' septet ', 'band,', ' trio ', ' collective ', ' band,', ' quintet ', ' quartet,', ' septet,'],
+    'female': [' she ', ' her ', 'actress'],
     'male': [' him ', ' he ', ' his '],
-    'group': [' band ', ' group ', '-group', ' its ', ' members ', ' brothers ', ' duo ', ' trio '],
+    'group': [' band ', ' group ', '-group', ' its ', ' members ', ' brothers ', ' duo ', ' trio ', ' collective ', ' group,', ' quartet ', ' superduo ', ' band,', ' quintet '],
     'non-binary': [' they ', ' them ', ' their '],
 }
