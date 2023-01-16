@@ -14,8 +14,8 @@ dict_keys = {
 }
 
 dict_scale = {
-    0: 'Major',
-    1: 'Minor',
+    1: 'Major',
+    0: 'Minor',
 }
 
 dict_gender = {
