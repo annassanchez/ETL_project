@@ -1,7 +1,11 @@
 # ETL-project
 
-![](https://31.media.tumblr.com/129e2f001fb7837a8c14e10e4d5aea47/tumblr_mf3f1bxXVb1qhbo1ko1_500.gif)
+![High Fidelity](https://64.media.tumblr.com/da7235613f6fe6292360d74d410ece3b/01bebaf99b141ae6-a4/s500x750/1070b19f89a4cc2c1b3420495fb027fcfb1acc9f.gif)
 > “What came first, the music or the misery? People worry about kids playing with guns, or watching violent videos, that some sort of culture of violence will take them over. Nobody worries about kids listening to thousands, literally thousands of songs about heartbreak, rejection, pain, misery and loss. Did I listen to pop music because I was miserable? Or was I miserable because I listened to pop music?"
+> <p align="center">
+  <img src="https://64.media.tumblr.com/da7235613f6fe6292360d74d410ece3b/01bebaf99b141ae6-a4/s500x750/1070b19f89a4cc2c1b3420495fb027fcfb1acc9f.gif" alt="High Fidelity"/>
+</p>
+
 
 # Context
 
