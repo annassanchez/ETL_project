@@ -10,6 +10,8 @@ import re
 pd.options.display.max_columns = None
 from fuzzywuzzy import process, fuzz
 
+import src.biblioteca as bb
+
 load_dotenv()
 api = os.getenv("lastfm-id")
 username = os.getenv("lastfm-user")
@@ -75,8 +77,10 @@ def getTrackTags(artist, track):
 
 def music_genres(column, genres):
     """
-    This function compares a given music genre with the top 24 genders of the dataset; 
-    returns the given genre if it's on the top genre list, if not it matches to the most similar genre from the given dictionary
+    This function compares a given music genre with the top 25 genders of the dataset; 
+    returns the given genre if it's on the top genre list, if not it matches to the most similar genre from the given dictionary.
+    Takes: the column with the given music genre and the top25 genders.
+    Returns: a new dataframe column that compares the genre values, see if there's a match with the top25 ones, and if not returns "other" 
     """
     max = 0
     for key in genres.keys():
@@ -91,3 +95,33 @@ def music_genres(column, genres):
         return genre
     else:
         return "other"
+
+def generos(col):
+    """
+    This function determines the gender of the artist based on the summary published on lastFM. It compares the pronouns and see if there is a match with the dict_gender dictionary on src.biblioteca.
+    Takes: the summary column.
+    Returns: the gender of the artist or group if its a band.
+    """
+    for key, value in bb.dict_gender.items():
+        for k in key:
+            for item in value:
+                try:
+                    if item in col.lower():
+                        return key
+                except:
+                    return np.nan
+    return np.nan
+
+def generos_2(col):
+    """
+    This function determines the gender of the artist based on the summary published on lastFM. It compares the pronouns and see if there is a match with the dict_gender dictionary on src.biblioteca.
+    Takes: the summary column.
+    Returns: the gender of the artist or group if its a band.
+    """
+    for key, value in bb.dict_gender.items():
+        try:
+            if value in col.lower():
+                return key
+        except:
+            return np.nan
+    return np.nan
