@@ -125,3 +125,6 @@ def generos_2(col):
         except:
             return np.nan
     return np.nan
+
+def moth_as_numer(mes):
+    return bb.dict_month[mes]
