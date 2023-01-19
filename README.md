@@ -1,9 +1,21 @@
-# ETL_project
+# ETL-project
+
+![](https://31.media.tumblr.com/129e2f001fb7837a8c14e10e4d5aea47/tumblr_mf3f1bxXVb1qhbo1ko1_500.gif)
 > “What came first, the music or the misery? People worry about kids playing with guns, or watching violent videos, that some sort of culture of violence will take them over. Nobody worries about kids listening to thousands, literally thousands of songs about heartbreak, rejection, pain, misery and loss. Did I listen to pop music because I was miserable? Or was I miserable because I listened to pop music?"
 
-The source database for this analysis is published [here](https://www.kaggle.com/datasets/dhruvildave/spotify-charts). The dataset compiles the songs that were on the `Top200` and `Viral50` since January 1st 2007. This playlists are updated each 2-3 days.
+# Context
+
+The source database for this analysis is published [here](https://www.kaggle.com/datasets/dhruvildave/spotify-charts). The dataset compiles the songs that were on the `Top200` and `Viral50` since January 1st 2017 until 31st of December of 2021. This playlists are updated each 2-3 days.
 
 The key of this analysis is to see if the music that is in this playlist varies in the given period -- the genre, meaning of the lyrics or the artists. If the most popular music is brand new or is not so new, which are the most listened artist and how they evolve in the charts.
+
+Hypothesis:
+- Did we listen to more sad music because of the Covid-19 pandemic?
+  - mirar la `valence`, `energy`, `tone`, `key`.
+- After its rise on the 90s and 00s is still pop music so popular?
+- How are the most popular listened top genres? Are there similarities on music genres?
+- Most of the most listened artist are men -- did Me too affect the music that we listen? 
+- Los artistas más populares son jóvenes y hay mucah volatilidad -- las canciones pasan rápido de moda?
 
 Se extrae la siguiente información:
 - información de los géneros musicales de las canciones
