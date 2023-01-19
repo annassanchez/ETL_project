@@ -1,3 +1,7 @@
+import calendar
+
+dict_month = dict(zip(list(range(1,13)), list(calendar.month_name)[1:]))
+
 dict_keys = {
     0: 'C',
     1: 'C♯, D♭',
