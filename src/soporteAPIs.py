@@ -126,5 +126,8 @@ def generos_2(col):
             return np.nan
     return np.nan
 
-def moth_as_numer(mes):
-    return bb.dict_month[mes]
+def month_as_number(mes):
+    if mes in bb.dict_month.values():
+        return bb.dict_month[mes]
+    else:
+        return np.nan
