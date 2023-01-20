@@ -127,7 +127,19 @@ def generos_2(col):
     return np.nan
 
 def month_as_number(mes):
-    if mes in bb.dict_month.values():
+    try:
         return bb.dict_month[mes]
-    else:
+    except:
         return np.nan
+
+def date_conversion(year, month, day):
+    try:
+        return pd.to_datetime(str(year)+ '-' + str(int(month)) + '-' + str(day)) 
+    except:
+        return np.nan
+
+from datetime import date
+
+def calculate_age(birthday):
+    today = date.today()
+    return today.year - birthday.year - ((today.month, today.day) < (birthday.month, birthday.day))
