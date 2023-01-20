@@ -32,11 +32,8 @@ ENGINE = InnoDB;
 -- Table `mydb`.`playlist`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`playlist` (
-  `idplaylist` INT NOT NULL AUTO_INCREMENT,
-  `title` VARCHAR(5000) NOT NULL,
   `ranking` INT NOT NULL,
   `date` DATE NOT NULL,
-  `artist` VARCHAR(1000) NOT NULL,
   `url` VARCHAR(60) NOT NULL,
   `region` VARCHAR(45) NOT NULL,
   `chart` VARCHAR(25) NOT NULL,
@@ -45,7 +42,8 @@ CREATE TABLE IF NOT EXISTS `mydb`.`playlist` (
   `highest_rank` INT NOT NULL,
   `weeks_in_rank` INT NOT NULL,
   `artist_url` VARCHAR(60) NOT NULL,
-  PRIMARY KEY (`idplaylist`),
+  `id` INT NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`),
   INDEX `fk_playlist_artist1_idx` (`artist_url` ASC) VISIBLE,
   CONSTRAINT `fk_playlist_artist1`
     FOREIGN KEY (`artist_url`)
@@ -59,13 +57,14 @@ ENGINE = InnoDB;
 -- Table `mydb`.`lastfm`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`lastfm` (
-  `url` VARCHAR(60) NOT NULL,
-  `artist` VARCHAR(1000) NOT NULL,
-  `track` VARCHAR(5000) NOT NULL,
-  `published_track` DATETIME NULL,
-  `published` DATETIME NULL,
-  `summary` BLOB NULL,
-  `content` LONGBLOB NULL,
+  `artist_url` VARCHAR(60) NOT NULL,
+  `artist_0` VARCHAR(60) NULL,
+  `artist_1` VARCHAR(60) NULL,
+  `artist_2` VARCHAR(60) NULL,
+  `published_track` VARCHAR(25) NULL,
+  `published` VARCHAR(25) NULL,
+  `summary` MEDIUMTEXT NULL,
+  `content` LONGTEXT NULL,
   `aritist_genre_0` VARCHAR(25) NULL,
   `aritist_genre_1` VARCHAR(25) NULL,
   `aritist_genre_2` VARCHAR(25) NULL,
@@ -76,9 +75,11 @@ CREATE TABLE IF NOT EXISTS `mydb`.`lastfm` (
   `track_genre_2` VARCHAR(25) NULL,
   `track_genre_3` VARCHAR(25) NULL,
   `track_genre_4` VARCHAR(25) NULL,
-  `genre` VARCHAR(45) NULL,
-  `artist_url` VARCHAR(60) NOT NULL,
-  PRIMARY KEY (`url`),
+  `music_genre` VARCHAR(45) NULL,
+  `gender` VARCHAR(15) NULL,
+  `birthday_date` VARCHAR(25) NULL,
+  `age` INT NULL,
+  PRIMARY KEY (`artist_url`),
   INDEX `fk_lastfm_artist1_idx` (`artist_url` ASC) VISIBLE,
   CONSTRAINT `fk_lastfm_artist1`
     FOREIGN KEY (`artist_url`)
@@ -92,15 +93,13 @@ ENGINE = InnoDB;
 -- Table `mydb`.`spotify`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`spotify` (
-  `url` VARCHAR(60) NOT NULL,
-  `artist` VARCHAR(1000) NOT NULL,
-  `track` VARCHAR(5000) NOT NULL,
+  `artist_url` VARCHAR(60) NOT NULL,
   `URI` VARCHAR(45) NULL,
   `daceability` DOUBLE NULL,
   `energy` DOUBLE NULL,
-  `key` INT NULL,
+  `key_song` INT NULL,
   `loudness` DOUBLE NULL,
-  `mode` INT NULL,
+  `mode_song` INT NULL,
   `speechiness` DOUBLE NULL,
   `acousticness` DOUBLE NULL,
   `instrumentalness` DOUBLE NULL,
@@ -109,8 +108,9 @@ CREATE TABLE IF NOT EXISTS `mydb`.`spotify` (
   `tempo` DOUBLE NULL,
   `duration_ms` DOUBLE NULL,
   `duration_mins` INT NULL,
-  `artist_url` VARCHAR(60) NOT NULL,
-  PRIMARY KEY (`url`, `artist_url`),
+  `popularity` INT NULL,
+  `release_date` VARCHAR(15) NULL,
+  PRIMARY KEY (`artist_url`),
   INDEX `fk_spotify_artist1_idx` (`artist_url` ASC) VISIBLE,
   CONSTRAINT `fk_spotify_artist1`
     FOREIGN KEY (`artist_url`)
