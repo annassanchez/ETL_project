@@ -4,9 +4,6 @@ import requests
 import os 
 from dotenv import load_dotenv
 import requests
-from tqdm import tqdm
-import pickle
-import re
 pd.options.display.max_columns = None
 from fuzzywuzzy import process, fuzz
 
