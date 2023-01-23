@@ -53,9 +53,9 @@ Getting info from `genius`, a website that publishes song lyrics, in order to ge
 
 ## Some results
 
-On the selected playlist (`top200` and `viral50`) there's seems to be no significant change on the `valence`, `danceability` and `energy` values, a way to measure the emotional state of the mist listened music on Spotify.
-[](https://github.com/annassanchez/ETL_project/blob/main/images/valence.png)
-[](https://github.com/annassanchez/ETL_project/blob/main/images/danceability_energy.png)
+On the selected playlist (`top200` and `viral50`) there's seems to be no significant change on the `valence`, `danceability` and `energy` values, a way to measure the emotional state of the most listened music on Spotify.
+![valence result for the whole items from the top200 and viral50 playlists](https://github.com/annassanchez/ETL_project/blob/main/images/valence.png)
+![energy and danceability result for the whole items from the top200 and viral50 playlists ](https://github.com/annassanchez/ETL_project/blob/main/images/danceability_energy.png)
 
 ## Libraries
 
