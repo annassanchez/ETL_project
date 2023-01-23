@@ -21,10 +21,11 @@
 
 ## Context
 
-Objective: The key of this analysis is to combine multiple programming tools in order to gather data from a public dataset, APIs and webscrapping and analyse it.
+Objective: 
+- The key of this analysis is to combine multiple programming tools in order to gather data from a public dataset, APIs and webscrapping and analyse it.
 
 Hypothesis:
-- Did we listen to more sad music because of the Covid-19 pandemic? See what of the top artist and top genres are in the given period, the characteristics of the music and the lyrics, and see if there is a swift in music taste due to that event.
+- Did we listen to more sad music because of the Covid-19 pandemic? Analyse the `top200` and `viral50` playlist, the general `valence`, `danceability` and `energy` values, but also how it changes for the top music genres, the artist gender or the top 5 most listened artis on the given period. 
 
 ## Spotify playlist dataset 
 
@@ -49,24 +50,29 @@ The Spotify API has a Python library called `spotipy` that helps with the data e
 
 Getting info from `genius`, a website that publishes song lyrics, in order to get the song lyrics and information on the song (as who wrote it, the discography that publishes or other song credits).
 
+## Some results
+
+Imagenes aquí
+
 ## Libraries
 
 - [**pandas**](https://pypi.org/project/pandas/): this library is used to work with related and table like data structures.
 - [**numpy**](https://pypi.org/project/numpy/): library used for scientific calculation.
 - [**pickle**](https://docs.python.org/3/library/pickle.html): a module that generates files that can be used within python to store any kind of data -- from dataframes to dicionaries and so on.
 - [**clean-text**](https://pypi.org/project/clean-text/): this library helps to normalise text extracted from social media -- cleans emojis, weird characters and so on.
-- **requests**
-- **os**
-- **dotenv**
-- **tqdm**
-- **re**
-- **fuzzywuzzy**
-- **collections**
-- **calendar**
-- **spotipy**
-- **selenium**
-- **beautifulSoup**
-- **time**
+- [**requests**](https://pypi.org/project/requests/): requests is used to make http requests -- mostly used on the API calls notebooks
+- [**os**](https://docs.python.org/es/3.10/library/os.html): os is used for operating system functionalities within python -- for example, accessing .pickle files or navigating on folders within this project.
+- [**dotenv**](https://pypi.org/project/python-dotenv/): dotenv reads key-value files from and `.env` (enviroment) file -- mostly used to store the api keys.
+- [**tqdm**](https://pypi.org/project/tqdm/): this library is used to print a progress meter when iterating.
+- [**re**](https://docs.python.org/3/library/re.html): re provides regular expression matching operations to python -- mostly used for cleaning the api results.
+- [**fuzzywuzzy**](https://pypi.org/project/fuzzywuzzy/): library that creates string matching comparing two values to a given thereshold -- mostly used to create equivalences and clean strings.
+- [**collections**](https://docs.python.org/3/library/collections.html): this module implements special containers datatypes providing alternatives to the python's built-in containers -- in this case, `Counter` is used.
+- [**calendar**](https://docs.python.org/3/library/calendar.html): this module allows to generate calendars and provides functions related to the calendar -- for example, it gives a list with the months as texts.
+- [**spotipy**](https://spotipy.readthedocs.io/en/2.22.0/): spotipy is a python library for maiking api calls to the Spotify web API.
+- [**selenium**](https://pypi.org/project/selenium/): this package is used to automate web browser interaction from Python -- used for webscrapping.
+- [**beautifulSoup**](https://pypi.org/project/beautifulsoup4/): this library scrapes information from webpages, iterating searching and modifying the html parser.
+- [**time**](https://docs.python.org/3/library/time.html): this module provides various time-related functions -- in this case, related to scraping to add timers
+- [**SQLAlchemy**](https://pypi.org/project/SQLAlchemy/): python toolkit that connects python to SQL.
 
 <!--Se extrae la siguiente información:
 - información de los géneros musicales de las canciones
