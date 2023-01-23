@@ -30,14 +30,14 @@ Hypothesis:
 
 ## Spotify playlist dataset 
 
-The source database for this analysis is published [here](https://www.kaggle.com/datasets/dhruvildave/spotify-charts). The dataset compiles the songs that were on the `Top200` and `Viral50` since January 1st 2017 until 31st of December of 2021. This playlists are updated each 2-3 days. For this analysis, I will keep the data for USA region.
+The source database for this analysis is published [here](https://www.kaggle.com/datasets/dhruvildave/spotify-charts). The dataset compiles the songs that were on the `Top200` and `Viral50` since January 1st 2017 until 31st of December of 2021. This playlists are updated each 2-3 days. For this analysis, I will keep the data for USA region. The clean output from the extraction is stored [here](https://drive.google.com/drive/folders/1gSsz0kQWaUKldS9RNO9LIdX0f697nf0l?usp=sharing).
 
 ## Data from LastFM 
 
 LastFM is a music based social network that tracks the music you listen to. Also it has a really big open-source music description database, in which the users can tag the given artist or songs and add information about them. In order to make the API calls, [here](https://ws.audioscrobbler.com/2.0/) is the link. The main sections used of the API are:
 - **artist info:** information on each artist and its tags
 - **track tags:** the track tags
-On the `src` folder are some built-in functions in order to make the API calls.
+On the `src` folder are some built-in functions in order to make the API calls. The clean output from the api call is stored [here](https://drive.google.com/drive/folders/1gSsz0kQWaUKldS9RNO9LIdX0f697nf0l?usp=sharing).
 
 ## Data from Spotify
 
@@ -45,11 +45,11 @@ Spotify is a music streaming service that also provides information on the music
 The main sections used from the api are:
 - **search:** to get the `uri`s or the codes that spotify gives to all tracks. Also with the search method is possible to exract the `popularity` and the `release_date` from the tracks.
 - **audio features:** to get a categorical information behind the tracks. Some of the categories are the `tone`, `tempo`, `mode`.
-The Spotify API has a Python library called `spotipy` that helps with the data extraction.
+The Spotify API has a Python library called `spotipy` that helps with the data extraction.  The clean output from the api call is stored [here](https://drive.google.com/drive/folders/1gSsz0kQWaUKldS9RNO9LIdX0f697nf0l?usp=sharing).
 
 ## Further steps
 
-Getting info from `genius`, a website that publishes song lyrics, in order to get the song lyrics and information on the song (as who wrote it, the discography that publishes or other song credits).
+Getting info from `genius`, a website that publishes song lyrics, in order to get the song lyrics and information on the song (as who wrote it, the discography that publishes or other song credits). [Here](https://drive.google.com/drive/folders/1gSsz0kQWaUKldS9RNO9LIdX0f697nf0l?usp=sharing)'s available part of the scrapped data.
 
 ## Some results
 
