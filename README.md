@@ -7,17 +7,17 @@
 
 > 1. `data / pickle` -> input data storage
 > 2. `notebooks` -> jupyter notebooks with the etl process
->   - `1_extraction_cleaning_csv` -> cleaning of the source file
->   - `2_call_api_lastfm` -> calls to the lastFM api and the cleaning of the results.
->   - `3_call_api_spotify`-> calls to the Spotify API and cleaning of the results.
->   - `4_scraping_genius` -> webscraping from the genius website
->   - `5_extract_SQL` -> file to upload the data to the sql database
->   - `6_alaysis` -> visualizaion of the API and scraped data
+>       - `1_extraction_cleaning_csv` -> cleaning of the source file
+>       - `2_call_api_lastfm` -> calls to the lastFM api and the cleaning of the results.
+>       - `3_call_api_spotify`-> calls to the Spotify API and cleaning of the results.
+>       - `4_scraping_genius` -> webscraping from the genius website
+>       - `5_extract_SQL` -> file to upload the data to the sql database
+>       - `6_alaysis` -> visualizaion of the API and scraped data
 > 3. `sql` -> sql schema image and sql script
 > 4. `src` -> folder that stores the pipeline files
->   - `biblioteca.py` -> supports data cleaning
->   - `soporteAPIs.py` -> supports the lastFM API calls and data cleaning
->   - `soportecleaning.py` -> supports the cleaning of the input csv data
+>       - `biblioteca.py` -> supports data cleaning
+>       - `soporteAPIs.py` -> supports the lastFM API calls and data cleaning
+>       - `soportecleaning.py` -> supports the cleaning of the input csv data
 
 ## Context
 
