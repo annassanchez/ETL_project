@@ -63,8 +63,8 @@ def chart_categoricas_count(df):
     param: dataframe -> dataframe del que se sacan los gráficos
     """
     print(f'this chart gives the categorical distribution of the variables')
-    df_cat = df.select_dtypes(include = np.number)
-    fig, axes = plt.subplots(nrows=int(df_cat.shape[1]), ncols=int(1), figsize = (10 * df_cat.shape[1] / 2,10 * df_cat.shape[1] / 3))
+    df_cat = df.select_dtypes(include = 'category')
+    fig, axes = plt.subplots(nrows=df_cat.shape[1], ncols=1, figsize=(10 * df_cat.shape[1], 25))
     axes = axes.flat
 
     for i, colum in enumerate(df_cat.columns):
@@ -75,9 +75,13 @@ def chart_categoricas_count(df):
     fig.tight_layout();
 
 def chart_boxplot(dataframe):
-    """
-    esta funcion saca los boxplots de las variables numéricas - incluyendo la variable respuesta
-    param: dataframe
+    """Plots boxplots for numeric variables, including the response variable.
+
+    Args:
+        dataframe: A pandas DataFrame containing numeric variables.
+
+    Returns:
+        None
     """
     print('numeric variables distribution -> outliers')
     dataframe = dataframe.select_dtypes(include = np.number)
@@ -89,11 +93,12 @@ def chart_boxplot(dataframe):
     plt.tight_layout()
     plt.show();
 
-def distribucion_numericas(dataframe):
+def distribucion_numericas(dataframe, plot_type='kde'):
     """
-    Genera un conjunto de gráficos de distribución (KDE) para las variables numéricas de un dataframe.
+    Genera un conjunto de gráficos de distribución para las variables numéricas de un dataframe.
     Args:
         dataframe (pandas.DataFrame): El dataframe que se desea analizar.
+        plot_type (str): El tipo de gráfico de distribución que se desea generar. Puede ser 'hist', 'kde', o 'ecdf'.
     Returns:
         None: La función no retorna ningún valor.
     """
@@ -107,12 +112,23 @@ def distribucion_numericas(dataframe):
 
     # Graficar la distribución de cada variable
     for i, colum in enumerate(columnas_numeric):
-        sns.histplot(
-            data=dataframe,
-            x=colum,
-            alpha=0.2,
-            kde=True,
-            ax=axes[i])
+        if plot_type == 'hist':
+            sns.histplot(
+                data=dataframe,
+                x=colum,
+                alpha=0.2,
+                kde=False,
+                ax=axes[i])
+        elif plot_type == 'kde':
+            sns.kdeplot(
+                data=dataframe,
+                x=colum,
+                ax=axes[i])
+        elif plot_type == 'ecdf':
+            sns.ecdfplot(
+                data=dataframe,
+                x=colum,
+                ax=axes[i])
 
         axes[i].set_title(colum, fontsize=15, fontweight="bold")
         axes[i].tick_params(labelsize=10)
