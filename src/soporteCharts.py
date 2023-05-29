@@ -64,7 +64,7 @@ def chart_categoricas_count(df):
     """
     print(f'this chart gives the categorical distribution of the variables')
     df_cat = df.select_dtypes(include = np.number)
-    fig, axes = plt.subplots(nrows=int(df_cat.shape[1]/2), ncols=int(df_cat.shape[1] / 3), figsize = (10 * df_cat.shape[1] / 2,10 * df_cat.shape[1] / 3))
+    fig, axes = plt.subplots(nrows=int(df_cat.shape[1]), ncols=int(1), figsize = (10 * df_cat.shape[1] / 2,10 * df_cat.shape[1] / 3))
     axes = axes.flat
 
     for i, colum in enumerate(df_cat.columns):
@@ -72,12 +72,6 @@ def chart_categoricas_count(df):
                 x = df_cat[colum],
                 #hue = df_cat['Offer_Accepted'],
                 ax = axes[i])
-        total = float(len(df_cat[colum]))
-        for p in chart.patches:
-            height = p.get_height()
-            chart.text(p.get_x() + p.get_width() / 2., height + 3,
-                    '{:.2f}%'.format((height / total) * 100),
-                    ha='center')
     fig.tight_layout();
 
 def chart_boxplot(dataframe):
