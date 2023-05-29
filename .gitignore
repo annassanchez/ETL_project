@@ -143,3 +143,4 @@ data/pickle/genius_dataset_scraped7.pickle
 data/pickle/genius_dataset_scraped8.pickle
 data/pickle/genius_dataset_scraped9.pickle
 data/pickle/genius_dataset_scraped10.pickle
+.DS_Store
