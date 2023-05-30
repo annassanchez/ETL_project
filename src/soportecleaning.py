@@ -1,5 +1,10 @@
 import pandas as pd
 from datetime import date
+import numpy as np
+from collections import Counter
+import re
+import src.soporteAPIs as sa
+import tqdm
 
 import warnings
 warnings.filterwarnings("ignore")
@@ -147,3 +152,103 @@ def split_artists(df):
     tracks = pd.concat([df, test], axis = 1)
     tracks.rename(columns={0:'artist_0', 1:'artist_1', 2:'artist_2'}, inplace=True)
     return tracks
+
+def cleaningLastFM(df):
+    """
+    The objective of the 'cleaningLastFM' function is to clean and transform data from LastFM API. The function takes a pandas dataframe as input and performs cleaning operations on the 'bio', 'artist_tag', and 'track_tag' columns. The cleaned data is then concatenated with the original dataframe and returned as output.
+
+    Inputs:
+    - df: a pandas dataframe containing data from LastFM API
+
+    Flow:
+    1. The 'bio' column is extracted from the input dataframe and converted into a pandas series.
+    2. The 'artist_tag' column is extracted from the input dataframe and converted into a pandas series.
+    3. The column names of the 'artist_tag' series are modified to include a prefix 'artist_genre_'.
+    4. The values in each row of the 'artist_tag' series are converted into a list and only the first value is retained.
+    5. The 'track_tag' column is extracted from the input dataframe and converted into a pandas series.
+    6. The column names of the 'track_tag' series are modified to include a prefix 'track_genre_'.
+    7. The values in each row of the 'track_tag' series are converted into a list and only the first value is retained.
+    8. The cleaned 'bio', 'artist_tag', and 'track_tag' series are concatenated with the original dataframe along the columns axis.
+    9. The concatenated dataframe is returned as output.
+
+    Outputs:
+    - cleaned pandas dataframe containing the original data and cleaned 'bio', 'artist_tag', and 'track_tag' columns.
+
+    Additional aspects:
+    - The function uses the pandas library to manipulate data.
+    - The function handles missing values in the 'artist_tag' and 'track_tag' columns by skipping rows that cannot be cleaned.
+    - The function does not modify the original input dataframe.
+    """
+    ## getting bio info
+    bio = df['bio'].apply(pd.Series)
+    ## cleaning artist column
+    artist_tag = df['artist_tag'].apply(pd.Series)
+    artist_tag.columns = ['aritist_genre_'+str(item) for item in artist_tag.columns.to_list()]
+    artist_tag = artist_tag.applymap(lambda x: list(x.values())[0] if isinstance(x, dict) else x)
+    ## leaning tags info
+    track_tag = df['track_tag'].apply(pd.Series)
+    track_tag.columns = ['aritist_genre_'+str(item) for item in track_tag.columns.to_list()]
+    track_tag = track_tag.applymap(lambda x: list(x.values())[0] if isinstance(x, dict) else x)
+    return pd.concat([df, bio, artist_tag, track_tag], axis = 1)
+
+def newColumnsLastFM(df):
+    """
+    Objective:
+    The objective of the 'newColumnsLastFM' function is to generate new columns for a given dataframe. These new columns include music genre, gender, and age. The function also cleans and formats the data in the existing columns to make them more usable.
+
+    Inputs:
+    - df: a pandas dataframe containing the data to be processed
+
+    Flow:
+    1. Generate genre columns based on artist and track genres
+    2. Count the number of different music genres and select the top 25
+    3. Clean the music genre column using a function from 'soporteAPIs'
+    4. Add a gender column using a function from 'soporteAPIs'
+    5. Extract the birthdate from the 'content' column using regular expressions
+    6. Clean and format the birthdate data
+    7. Convert the birthdate to a datetime object and calculate age
+    8. Drop unnecessary columns and rename the cleaned music genre column
+    9. Return the processed dataframe
+
+    Outputs:
+    - df: a pandas dataframe with new columns for music genre, gender, and age
+
+    Additional aspects:
+    - The function uses external functions from 'soporteAPIs' for cleaning and formatting data
+    - The function uses the 'tqdm' library to display a progress bar during processing
+    - The function uses the 'Counter' class from the 'collections' module to count the number of different music genres
+    """
+    ## generate genre columns
+    df['music_genre'] = np.where(df['aritist_genre_0'].isnull() == True, df['track_genre_0'].str.lower(), df['aritist_genre_0'].str.lower())
+    count_genres = Counter(genres for genres in df['music_genre'])
+    print(f"There are {len(count_genres)} different music genres.")
+    dict_genres = dict(count_genres.most_common(25))
+    df["clean_music_genre"] = df.apply(lambda x: sa.music_genres(x["music_genre"], dict_genres), axis = 1)
+    ## add gender column 
+    df["gender"] = df['summary'].apply(sa.generos)
+    ## add age
+    df['birthday'] =  df['content'].apply(lambda x: re.findall(r'\w{1,} \d{1,2}, \d{4}|\d{1,2} \w{4,} \d{4}',str(x))).str[0]
+    df[[1, 2, 3]] = df['birthday'].str.split(' ', expand=True)
+    df['month_text'] = ''
+    df['day'] = ''
+    for index, row in tqdm(df.iterrows(), total = df.shape[0]):
+        try:
+            if ',' in row[2]:
+                #print('str')
+                row['month_text'] = row[1]
+                row['day'] = row[2].replace(',', '')
+        except:
+            if row[2] == np.nan:
+                #print('nan')
+                row['month_text'] = np.nan
+                row['day'] = np.nan
+            else:
+                #print('float')
+                row['month_text'] = row[2]
+                row['day'] = row[1]
+    df["month"] = df["month_text"].apply(sa.month_as_number)
+    df['birthday_date'] = df.apply(lambda x: sa.date_conversion(x[3], x["month"], x["day"]), axis = 1)
+    df['age'] = df['birthday_date'].apply(sa.calculate_age)
+    df.drop(['birthday',	1,	2,	3,	'month_text',	'day',	'month', 'music_genre'], axis =1, inplace=True)
+    df.rename({'clean_music_genre':'music_genre'}, axis = 1, inplace=True)
+    return df
