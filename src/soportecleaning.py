@@ -4,7 +4,7 @@ import numpy as np
 from collections import Counter
 import re
 import src.soporteAPIs as sa
-import tqdm
+from tqdm import tqdm
 
 import warnings
 warnings.filterwarnings("ignore")
@@ -187,7 +187,7 @@ def cleaningLastFM(df):
     artist_tag = artist_tag.applymap(lambda x: list(x.values())[0] if isinstance(x, dict) else x)
     ## leaning tags info
     track_tag = df['track_tag'].apply(pd.Series)
-    track_tag.columns = ['aritist_genre_'+str(item) for item in track_tag.columns.to_list()]
+    track_tag.columns = ['track_genre_'+str(item) for item in track_tag.columns.to_list()]
     track_tag = track_tag.applymap(lambda x: list(x.values())[0] if isinstance(x, dict) else x)
     return pd.concat([df, bio, artist_tag, track_tag], axis = 1)
 
